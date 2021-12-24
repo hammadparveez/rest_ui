@@ -51,12 +51,20 @@ class _HomeViewState extends State<HomeView> {
         children: [
           Text('Rest Time', style: Theme.of(context).textTheme.headline5),
           const SizedBox(height: 5),
-          Text(
-              "${displayHour(hour)} ${showZeroCount(mintues)}$mintues : ${showZeroCount(quantity)}$quantity",
-              style: Theme.of(context).textTheme.headline3),
+          buildTimerText(context),
         ],
       )),
     );
+  }
+
+  Text buildTimerText(BuildContext context) {
+    String timerHour = displayHour(hour);
+    String timerMintues = showZeroCount(mintues)+"$mintues"; 
+    String timerQty =  showZeroCount(quantity)+"$quantity";
+
+    return Text(
+       "$timerHour $timerMintues : $timerQty",
+        style: Theme.of(context).textTheme.headline3);
   }
 
   TextButton _buildSkipRestButton() {
