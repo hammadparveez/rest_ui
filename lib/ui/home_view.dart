@@ -27,7 +27,10 @@ class _HomeViewState extends State<HomeView> {
       } else {
         ++quantity;
       }
-      if (hasCompletedSecOrMint(mintues)) ++hour;
+      if (hasCompletedSecOrMint(mintues)) {
+        mintues = 0;
+        ++hour;
+      }
 
       setState(() {});
     });
@@ -59,11 +62,10 @@ class _HomeViewState extends State<HomeView> {
 
   Text buildTimerText(BuildContext context) {
     String timerHour = displayHour(hour);
-    String timerMintues = showZeroCount(mintues)+"$mintues"; 
-    String timerQty =  showZeroCount(quantity)+"$quantity";
+    String timerMintues = showZeroCount(mintues) + "$mintues";
+    String timerQty = showZeroCount(quantity) + "$quantity";
 
-    return Text(
-       "$timerHour $timerMintues : $timerQty",
+    return Text("$timerHour $timerMintues : $timerQty",
         style: Theme.of(context).textTheme.headline3);
   }
 
@@ -81,13 +83,13 @@ class _HomeViewState extends State<HomeView> {
   }
 
   String displayHour(int hour) {
-    if (hasHourCompleted) {
+    if (hour > 0) {
       return showZeroCount(hour) + '$hour :';
     }
     return '';
   }
 
-  bool hasCompletedSecOrMint(int value) => value > 59 ? true : false;
-  bool get hasHourCompleted => mintues > 59 ? true : false;
+  bool hasCompletedSecOrMint(int value) => value == 59 ? true : false;
+  bool get hasHourCompleted => mintues == 59 ? true : false;
   String showZeroCount(int value) => value < 10 ? '0' : '';
 }
