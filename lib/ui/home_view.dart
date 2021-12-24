@@ -10,8 +10,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  int quantity = 55;
-  int mintues = 59;
+  int quantity = 0;
+  int mintues = 0;
   int hour = 0;
   @override
   void initState() {
