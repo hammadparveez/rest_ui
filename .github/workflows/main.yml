@@ -14,10 +14,10 @@ jobs:
       run: flutter pub get
     - name: Build APK
       run: flutter build apk --release
-    - name: Whatsapp Clone Upload
+    - name: Rest UI
       uses: actions/upload-artifact@v2.2.4
       with:
-       name: Whatsapp Clone Apk
+       name: Rest UI
        path: build/app/outputs/apk/release/app-release.apk
 # flutter-release-ios:
 #  runs-on: macos-latest
